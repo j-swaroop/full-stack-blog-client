@@ -1,0 +1,158 @@
+.login-container{
+    height: 100vh;
+    background-image: linear-gradient(to right, #f55151, #403f3f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-responsive-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F8F8F8;
+    width: 90%;
+    height: 90%;
+    max-width: 1200px;
+    max-height: 650px;
+    border-radius: 6px;
+    
+}
+
+
+.title{
+    color: #030303;
+    font-family: 'Roboto';
+    font-weight: 300;
+    margin-bottom: 0;
+    text-align: center;
+}
+.subtext{
+    color: #636364;
+    font-family: 'Roboto';
+    margin-top: 9px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 90%;
+}
+.login-img-container{
+    width: 50%;
+    height: 100%;
+}
+.login-img{
+    width: 100%;
+    height: 100%;
+}
+.form-field{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 13px;
+    width: 90%;
+    max-width: 350px;
+    font-weight: 600;
+}
+.label{
+    color: #525151;
+    font-size: 14px;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-family:monospace;
+}
+.input{
+    border-radius: 12px;
+    font-family: 'Roboto';
+    padding-left: 13px;
+    height: 39px;
+    /* color: #636364; */
+    border: 1px solid #C4C4C4;
+    outline-color: #EA454C;
+}
+.login-btn{
+    width: 90%;
+    background-color: #EA454C;
+    font-family: 'Roboto';
+    border: none;
+    border-radius: 10px;
+    color: white;
+    height: 39px;
+    max-width: 350px;
+    margin-top: 15px;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+.login-btn:hover{
+    transition: 0.5s ease-in;
+    background-color: #181818;
+}
+
+.error{
+    font-family: 'Roboto';
+    font-size: 13px;
+    color: red;
+    width: 90%;
+    max-width: 350px;
+    margin-top: 4px;
+}
+
+.sign-up-btn{
+    color: #595959;
+    font-family: 'Roboto';
+    font-size: 14px;
+    margin-top: 25px;
+    
+}
+.sign-up-text{
+    color: #fc0f0f;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: underline;
+    font-family:'Trebuchet MS', sans-serif;
+    
+    
+}
+.checkbox-field{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 350px;
+    margin-top: 0;
+}
+.checkbox{
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+@media (max-width: 608px){
+    .login-responsive-container{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .form-container{
+        width: 90%;
+        height: 100%;
+        align-items: center;
+        order: 1;
+    }
+    .login-img-container{
+        display: none;
+    }
+    .title{
+        font-size: 26px;
+    }
+    .subtext{
+        font-size: 15px;
+        text-align: center;
+        
+    }
+}

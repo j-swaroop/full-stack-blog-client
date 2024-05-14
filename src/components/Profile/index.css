@@ -1,0 +1,33 @@
+.profile-container{
+    margin-top: 9vh;
+    
+}
+.profile-responsive-container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
+    margin: auto;
+    padding-top: 25px;
+}
+.profile-username{
+    color: rgb(42, 42, 42);
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Roboto';
+    font-weight: 900;
+    
+}
+.user-posts{
+    list-style-type: none;
+    /* display: flex;
+    flex-direction: column; */
+    padding: 0;
+    width: 100%;
+}
+.cc{
+    margin-bottom: 10px;
+}
+.new-custom{
+    margin-bottom: 10px;
+}
