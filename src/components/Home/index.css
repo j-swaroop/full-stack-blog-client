@@ -67,6 +67,12 @@
     cursor: pointer;
    
 }
+@media (max-width: 576px){
+    .post-text{
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 13px;
+    }
+}
 .post-text:hover{
     color: #ef3e3e;
     cursor: pointer;
