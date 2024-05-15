@@ -17,14 +17,21 @@ const Registration = () => {
         isDone: false
     })
 
+    const [informText, setInformText] = useState({
+        istrue: false,
+        infromMsg: 'Please Wait...'
+    })
+
     const validationSchema = Yup.object({
         username: Yup.string().min(3).max(15).required(),
         password: Yup.string().min(3).max(20).required()
     })
 
     const onSubmitRegister = (data) => {
+       setInformText({...informText, istrue: true})
        axios.post('https://full-stack-blog-server-o6hn.onrender.com/auth', data).then((response) => {
             setMsgObj({msg: response.data.msg, isDone: true})
+            setInformText({...informText, istrue: false})
        })
 
       
@@ -64,6 +71,7 @@ const Registration = () => {
 
                             <button type='submit' className='login-btn'> Register </button>
                             {msgObj.isDone && <p className='error'> *{msgObj.msg} </p>}
+                            {informText.istrue && <p className='error'> {informText.infromMsg} </p>}
                             <p className='sign-up-btn'>Already have an account? 
                             <span className='sign-up-text' onClick={onClickSignIn}> Sign In</span> for free!</p>
                             

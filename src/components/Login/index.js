@@ -19,9 +19,15 @@ const Login = () => {
         checked: false
     })
 
+    const [informText, setInformText] = useState({
+        istrue: false,
+        infromMsg: 'Please Wait...'
+    })
+
     const {authState, setAuthState} = useContext(AuthContext)
 
     const onClickLogin = async () => {
+        setInformText({...informText, istrue: true})
         const userObj = {username: username, password: password}
         const response = await axios.post('https://full-stack-blog-server-o6hn.onrender.com/auth/login', userObj)
         
@@ -34,6 +40,7 @@ const Login = () => {
             Cookies.set('jwt_token', jwtToken, {expires: 30})
             history.replace('/')
         }else{
+            setInformText({...informText, istrue: false})
             setErrorObj({errorMsg: response.data.error, isError: true})
         }
 
@@ -88,6 +95,7 @@ const Login = () => {
                     
                     <button onClick={onClickLogin} className='login-btn'> Login </button>
                     {errorObj.isError && <p className='error'> *{errorObj.errorMsg} </p>}
+                    {informText.istrue && <p className='error'> {informText.infromMsg} </p>}
                     <p className='sign-up-btn'>Don’t have an account? 
                         <span className='sign-up-text' onClick={onClickRegister}> Sign up </span> for free!</p>
                 </div>
