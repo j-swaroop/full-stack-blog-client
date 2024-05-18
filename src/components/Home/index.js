@@ -35,6 +35,11 @@ const Home = () => {
   }, [])
 
   const onClickLikePost = async (postId) => {
+    if (likedPosts.includes(postId)){
+        setLikedPosts(likedPosts.filter(id => id !== postId))
+    }else{
+        setLikedPosts([...likedPosts, postId])
+    }
     const response = await axios.post('https://full-stack-blog-server-o6hn.onrender.com/likes', {PostId: postId}, {
         headers: {
             accessToken: Cookies.get('jwt_token')
@@ -56,13 +61,6 @@ const Home = () => {
             return post
         }
     }))
-
-    if (likedPosts.includes(postId)){
-        setLikedPosts(likedPosts.filter(id => id !== postId))
-    }else{
-        setLikedPosts([...likedPosts, postId])
-    }
-
 
   }
 
