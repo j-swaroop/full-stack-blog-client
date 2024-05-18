@@ -27,7 +27,7 @@ const CreatePost = () => {
     })
 
     const onSubmitPost = async data => {
-        console.log(imgObj)
+        // console.log(imgObj)
         setLoader(true)
         if (imgObj !== null){
             const formData = new FormData()
