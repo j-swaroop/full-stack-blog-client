@@ -62,7 +62,7 @@ const Post = () => {
                 if (response.data.error){
                     console.log(response.data.error)
                 }else{
-                    console.log('Done')
+                    // console.log('Done')
                     getComments()
                     setNewComment('')
                 }
