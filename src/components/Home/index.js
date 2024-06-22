@@ -35,7 +35,6 @@ const Home = () => {
   }, [])
 
   const onClickLikePost = async (postId) => {
-
     if (likedPosts.includes(postId)){
         setLikedPosts(likedPosts.filter(id => id !== postId))
     }else{
@@ -60,10 +59,6 @@ const Home = () => {
             return post
         }
     }))
-
-    // console.log(response)
-
-
 
   }
 
