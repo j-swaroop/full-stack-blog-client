@@ -29,7 +29,7 @@ const Login = () => {
     const onClickLogin = async () => {
         setInformText({...informText, istrue: true})
         const userObj = {username: username, password: password}
-        const response = await axios.post('https://full-stack-blog-server-o6hn.onrender.com/auth/login', userObj)
+        const response = await axios.post('https://full-stack-blog-server-production-0fdb.up.railway.app/auth/login', userObj)
         
         if (!response.data.error){
             const {jwtToken, username, id} = response.data

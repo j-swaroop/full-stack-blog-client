@@ -27,7 +27,7 @@ const CreatePost = () => {
     })
 
     const onSubmitPost = async data => {
-        console.log(imgObj)
+        // console.log(imgObj)
         setLoader(true)
         if (imgObj !== null){
             const formData = new FormData()
@@ -37,7 +37,7 @@ const CreatePost = () => {
             data.imgUrl = responseForUrl.data.url
         }
         
-        const response = await axios.post('https://full-stack-blog-server-o6hn.onrender.com/posts', data, {
+        const response = await axios.post('https://full-stack-blog-server-production-0fdb.up.railway.app/posts', data, {
             headers: {
                 accessToken: Cookies.get('jwt_token')
             }

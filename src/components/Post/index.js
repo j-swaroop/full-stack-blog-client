@@ -21,12 +21,12 @@ const Post = () => {
     const [comments, setComments] = useState([]) // for geting all comments
     const [newComment, setNewComment] = useState('') // for posting comment
     const {authState} = useContext(AuthContext)
-
-    const getPost = () => axios.get(`https://full-stack-blog-server-o6hn.onrender.com/posts/byId/${id}`).then((response) => {
+    console.log(comments)
+    const getPost = () => axios.get(`https://full-stack-blog-server-production-0fdb.up.railway.app/posts/byId/${id}`).then((response) => {
         setPostObj(response.data)
     })
 
-    const getComments = () => axios.get(`https://full-stack-blog-server-o6hn.onrender.com/comments/${id}`).then((response) => {
+    const getComments = () => axios.get(`https://full-stack-blog-server-production-0fdb.up.railway.app/comments/${id}`).then((response) => {
         const updatedData = response.data.map(eachComment => ({
             id: v4(),
             originalId: eachComment.id,
@@ -48,7 +48,7 @@ const Post = () => {
 
     const onAddComment = () => {
         if (newComment !== ''){
-            axios.post(`https://full-stack-blog-server-o6hn.onrender.com/comments/`, {
+            axios.post(`https://full-stack-blog-server-production-0fdb.up.railway.app/comments/`, {
                 commentBody: newComment, 
                 PostId: id 
             },
@@ -62,7 +62,7 @@ const Post = () => {
                 if (response.data.error){
                     console.log(response.data.error)
                 }else{
-                    console.log('Done')
+                    // console.log('Done')
                     getComments()
                     setNewComment('')
                 }
@@ -76,21 +76,27 @@ const Post = () => {
     }
 
     const onClickDeleteComment = async (id) => {
+        const thatComment = comments.find(item => item.originalId === id)
+        // console.log(id)
+        // console.log(thatComment)
+        // console.log(authState.username)
+        if (thatComment.username === authState.username){
+            const response = await axios.delete(`https://full-stack-blog-server-production-0fdb.up.railway.app/comments/${id}`, {
+                headers: {
+                    accessToken: Cookies.get('jwt_token')
+                }
+            })
 
-        const response = await axios.delete(`https://full-stack-blog-server-o6hn.onrender.com/comments/${id}`, {
-            headers: {
-                accessToken: Cookies.get('jwt_token')
-            }
-        })
 
-        // console.log(response)
-        const newCommentsList = comments.filter(item => item.originalId !== id)
-        setComments(newCommentsList)
+            // console.log(response)
+            const newCommentsList = comments.filter(item => item.originalId !== id)
+            setComments(newCommentsList)
+        }
     }
 
     const onClickDeletePost = async postId => {
         history.push('/')
-        const response = await axios.delete(`https://full-stack-blog-server-o6hn.onrender.com/posts/${postId}`, {
+        const response = await axios.delete(`https://full-stack-blog-server-production-0fdb.up.railway.app/posts/${postId}`, {
             headers: {
                 accessToken: Cookies.get('jwt_token')
             }
@@ -104,7 +110,7 @@ const Post = () => {
         if (newTitle === null){
             return
         }else{
-            await axios.put(`https://full-stack-blog-server-o6hn.onrender.com/posts/title`, {newTitle: newTitle, id: id}, {
+            await axios.put(`https://full-stack-blog-server-production-0fdb.up.railway.app/posts/title`, {newTitle: newTitle, id: id}, {
                 headers: {
                     accessToken: Cookies.get('jwt_token')
                 }
@@ -118,7 +124,7 @@ const Post = () => {
     const onEditPostText = async (text) => {
         let newText = prompt('Enter New Text: ', text)
         if (newText !== null){
-            await axios.put(`https://full-stack-blog-server-o6hn.onrender.com/posts/postText`, {newText: newText, id: id}, {
+            await axios.put(`https://full-stack-blog-server-production-0fdb.up.railway.app/posts/postText`, {newText: newText, id: id}, {
                 headers: {
                     accessToken: Cookies.get('jwt_token')
                 }
@@ -203,10 +209,11 @@ const Post = () => {
                                 <li key={eachComment.id} className='comments-item'> 
                                     <div className='comment-name'>
                                         <p className='commented-user'> {eachComment.username}</p>
+                                    {eachComment.username === authState.username &&    
                                         <button className='delet-com-btn'
                                             onClick={() => {onClickDeleteComment(eachComment.originalId)}}> 
                                             <MdDeleteOutline/>    
-                                        </button>
+                                        </button>}
                                     </div>
                                     <p className='comment-title'> {eachComment.commentBody} </p>
                                     

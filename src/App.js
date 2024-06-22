@@ -21,7 +21,7 @@ const App = () => {
   })
 
   useEffect(() => {
-    axios.get('https://full-stack-blog-server-o6hn.onrender.com/auth/auth', {
+    axios.get('https://full-stack-blog-server-production-0fdb.up.railway.app/auth/auth', {
       headers: {
         accessToken: Cookies.get('jwt_token')
       }

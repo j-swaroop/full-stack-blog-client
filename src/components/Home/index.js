@@ -17,8 +17,8 @@ const Home = () => {
     const history = useHistory()
 
     const getListOfPosts = async () => {
-        const response = await axios.get('https://full-stack-blog-server-o6hn.onrender.com/posts', 
-            {headers: {accessToken: Cookies.get('jwt_token')}})
+        const response = await axios.get('https://full-stack-blog-server-production-0fdb.up.railway.app/posts', 
+        {headers: {accessToken: Cookies.get('jwt_token')}})
         // console.log(response)
 
         setLoader(false)
@@ -35,14 +35,18 @@ const Home = () => {
   }, [])
 
   const onClickLikePost = async (postId) => {
-    const response = await axios.post('https://full-stack-blog-server-o6hn.onrender.com/likes', {PostId: postId}, {
+
+    if (likedPosts.includes(postId)){
+        setLikedPosts(likedPosts.filter(id => id !== postId))
+    }else{
+        setLikedPosts([...likedPosts, postId])
+    }
+
+    const response = await axios.post('https://full-stack-blog-server-production-0fdb.up.railway.app/likes', {PostId: postId}, {
         headers: {
             accessToken: Cookies.get('jwt_token')
         }
     })
-
-    // console.log(response)
-
     setListOfPosts(listOfPosts.map(post => {
         if (post.id === postId){
             if (response.data.isLiked){
@@ -57,11 +61,8 @@ const Home = () => {
         }
     }))
 
-    if (likedPosts.includes(postId)){
-        setLikedPosts(likedPosts.filter(id => id !== postId))
-    }else{
-        setLikedPosts([...likedPosts, postId])
-    }
+    // console.log(response)
+
 
 
   }

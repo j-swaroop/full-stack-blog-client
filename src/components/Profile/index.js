@@ -18,13 +18,13 @@ const Profile = () => {
     const [showLoader, setLoader] = useState(true) 
 
     const getProfileInfo = async () => {
-        const response = await axios.get(`https://full-stack-blog-server-o6hn.onrender.com/auth/profile-info/${id}`)
+        const response = await axios.get(`https://full-stack-blog-server-production-0fdb.up.railway.app/auth/profile-info/${id}`)
 
         setUsername(response.data.username)
     }
 
     const getPostsInfo = async () => {
-        const response = await axios.get(`https://full-stack-blog-server-o6hn.onrender.com/posts/byuserId/${id}`)
+        const response = await axios.get(`https://full-stack-blog-server-production-0fdb.up.railway.app/posts/byuserId/${id}`)
         // console.log(response)
         setListOfPosts(response.data)
         setLoader(false)

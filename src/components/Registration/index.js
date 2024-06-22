@@ -29,7 +29,7 @@ const Registration = () => {
 
     const onSubmitRegister = (data) => {
        setInformText({...informText, istrue: true})
-       axios.post('https://full-stack-blog-server-o6hn.onrender.com/auth', data).then((response) => {
+       axios.post('https://full-stack-blog-server-production-0fdb.up.railway.app/auth', data).then((response) => {
             setMsgObj({msg: response.data.msg, isDone: true})
             setInformText({...informText, istrue: false})
        })
